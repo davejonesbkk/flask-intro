@@ -9,7 +9,7 @@ import sqlite3
 app = Flask(__name__)
 
 app.secret_key = 'my precious'
-app.database = "sample.db"
+app.database = "saple.db"
 
 def login_required(f):
 	@wraps(f)
@@ -25,16 +25,20 @@ def login_required(f):
 @login_required
 def home():
 	#return 'Hello, world'
-	g.db  = connect_db() #g is an object specific to Flask used to store temp objects during a request
-	cur = g.db.execute('select * from posts')
-	
 	posts = []
-	for row in cur.fetchall():
-		posts.append(dict(title=row[0], description=row[1]))
+	try:
+		g.db  = connect_db() #g is an object specific to Flask used to store temp objects during a request
+		cur = g.db.execute('select * from posts')
+		
+		
+		for row in cur.fetchall():
+			posts.append(dict(title=row[0], description=row[1]))
 
-	#posts = [dict(title=row[0], description=row[1]) for row in cur.fetchall()]
-	#print posts
-	g.db.close()
+		#posts = [dict(title=row[0], description=row[1]) for row in cur.fetchall()]
+		#print posts
+		g.db.close()
+	except sqlite3.OperationalError:
+		flash("You have no database")
 	return render_template("index.html", posts=posts)	
 
 @app.route('/welcome')
