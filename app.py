@@ -1,19 +1,20 @@
 from flask import Flask, render_template, redirect, url_for, request, session, flash
-from flask.ext.sqlalchemy import SQLAlchemy 
+
 from functools import wraps
+
+from flask.ext.sqlalchemy import SQLAlchemy 
 #import sqlite3
 
 #read this for help with decorators and wrappers!
 #http://simeonfranklin.com/blog/2012/jul/1/python-decorators-in-12-steps/
 
-
+#create the app object
 app = Flask(__name__)
 
 #config
 import os 
+
 app.config.from_object(os.environ['APP_SETTINGS'])
-
-
 
 #create the sqlalchemy object
 db = SQLAlchemy(app)
