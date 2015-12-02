@@ -11,10 +11,14 @@ from flask.ext.sqlalchemy import SQLAlchemy
 #create the app object
 app = Flask(__name__)
 
+
 #config
 import os 
 
+
 app.config.from_object(os.environ['APP_SETTINGS'])
+
+
 
 #create the sqlalchemy object
 db = SQLAlchemy(app)
