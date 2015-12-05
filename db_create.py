@@ -10,6 +10,7 @@ db.create_all()
 #db.session.add(BlogPost("Flask", "discoverflask.com"))
 #db.session.add(BlogPost("postgres", "we setup a local postgres instance"))
 #db.session.add(BlogPost("postgres", "we setup a local postgres instance"))
+#db.session.add(BlogPost("postgres", "we setup a local postgres instance"))
 
 
 
